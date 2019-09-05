@@ -12,12 +12,12 @@ export class TalleresComponent implements OnInit {
 
   public talleres: TallerInterface;
   public mensaje: string = "Crear";
+  public borrar: boolean = false;
   nuevoTaller = new TallerClase();
   constructor(private apiServicios: ApiserviciosService, private router: Router) { }
 
   ngOnInit() {
     this.getTalleres();
-    this.getTallerVacio(0);
   }
 
   public getTalleres() {
@@ -28,14 +28,27 @@ export class TalleresComponent implements OnInit {
   public getTallerVacio(id: number) {
     var tallerObservable = this.apiServicios.getTaller(id);
     tallerObservable.subscribe(
-      tallerObtenido => this.nuevoTaller = tallerObtenido
-    );
+      tallerObtenido => {
+        this.nuevoTaller = tallerObtenido;
+        window.location.reload();
+      });
   }
   public getTaller(id: number) {
     var tallerObservable = this.apiServicios.getTaller(id);
     tallerObservable.subscribe(
       tallerObtenido => {
-        this.mensaje = "Editar/Borrar";
+        this.mensaje = "Editar";
+        this.borrar = false;
+        this.nuevoTaller = tallerObtenido;
+      });
+  }
+
+  public getTallerBorrar(id: number) {
+    var tallerObservable = this.apiServicios.getTaller(id);
+    tallerObservable.subscribe(
+      tallerObtenido => {
+        this.mensaje = "Borrar";
+        this.borrar = true;
         this.nuevoTaller = tallerObtenido;
       });
   }

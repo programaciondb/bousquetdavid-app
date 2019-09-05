@@ -1,59 +1,83 @@
 <div class="row">
-    <div class="col-md-3">
-            <div *ngIf="nuevoTaller" class="text-white">
-                <h3>Crear Taller</h3>
-                    <p>
-                        <input type="hidden" [(ngModel)]="nuevoTaller.numtaller"> <br>
-                        <label>Nombre</label>
-                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.nombre">
-                    </p>
-                    <p>
-                        <label>Detalle</label>
-                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.detalle">
-                    </p>
-                    <p>
-                        <label>Horas</label>
-                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.numhoras">
-                    </p>
-                    <p>
-                        <label>Cupos</label>
-                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.cupos">
-                    </p>
-                    <p>
-                            <button *ngIf="mensaje=='Crear'" class="btn btn-info mr-2" (click)="postTaller()">POST</button>
-                            <button *ngIf="mensaje!='Crear'" class="btn btn-warning mr-2" (click)="putTaller(nuevoTaller.numtaller)">Editar</button>
-                            <button *ngIf="mensaje!='Crear'" class="btn btn-danger mr-2" (click)="putTaller(nuevoTaller.numtaller)">Borrar</button>
-                        </p>
-                </div>
-    </div>
+  <div class="col-md-3">
+    <div *ngIf="nuevoTaller" class="text-white">
+      <h3>{{mensaje}}</h3>
+      <div *ngIf="!borrar; else formBorrar">
+        <p>
+          <input type="hidden" [(ngModel)]="nuevoTaller.numtaller"> <br>
+          <label>Nombre</label>
+          <input class="form-control" required="true" [(ngModel)]="nuevoTaller.nombre">
+        </p>
+        <p>
+          <label>Detalle</label>
+          <input class="form-control" required="true" [(ngModel)]="nuevoTaller.detalle">
+        </p>
+        <p>
+          <label>Horas</label>
+          <input class="form-control" required="true" [(ngModel)]="nuevoTaller.numhoras">
+        </p>
+        <p>
+          <label>Cupos</label>
+          <input class="form-control" required="true" [(ngModel)]="nuevoTaller.cupos">
+        </p>
+      </div>
+      <ng-template #formBorrar>
+        <p>
+          <input type="hidden" [(ngModel)]="nuevoTaller.numtaller"> <br>
+          <label>Nombre</label>
+          <input class="form-control" readonly="true" required="true" [(ngModel)]="nuevoTaller.nombre">
+        </p>
+        <p>
+          <label>Detalle</label>
+          <input class="form-control" readonly="true" required="true" [(ngModel)]="nuevoTaller.detalle">
+        </p>
+        <p>
+          <label>Horas</label>
+          <input class="form-control" readonly="true" required="true" [(ngModel)]="nuevoTaller.numhoras">
+        </p>
+        <p>
+          <label>Cupos</label>
+          <input class="form-control" readonly="true" required="true" [(ngModel)]="nuevoTaller.cupos">
+        </p>
 
-    <div class="col-md-9">
-      <table class="table table-dark table-bordered table-striped text-center">
-        <thead>
-          <tr>
-            <th># Taller</th>
-            <th>Nombre</th>
-            <th>Detalle</th>
-            <th>Horas</th>
-            <th>Cupos</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let taller of talleres">
-            <td>{{taller.numtaller}}</td>
-            <td>{{taller.nombre}}</td>
-            <td>{{taller.detalle}}</td>
-            <td>{{taller.numhoras}}</td>
-            <td>{{taller.cupos}}</td>
-            <td>
-                    <button class="btn btn-warning" (click)="getTaller(taller.numtaller)">Editar</button>&nbsp;
-                    <a class="btn btn-danger" routerLink="/talleres">Borrar</a>
-            </td>
-          </tr>
-  
-        </tbody>
-      </table>
+      </ng-template>
+      <p>
+        <button *ngIf="mensaje=='Crear'" class="btn btn-info mr-2" (click)="postTaller()">Crear</button>
+        <button *ngIf="mensaje=='Editar'" class="btn btn-warning mr-2"
+          (click)="putTaller(nuevoTaller.numtaller)">Editar</button>
+        <button *ngIf="mensaje=='Borrar'" class="btn btn-danger mr-2"
+          (click)="putTaller(nuevoTaller.numtaller)">Borrar</button>
+          <button *ngIf="mensaje!='Crear'" class="btn btn-success" (click)="getTallerVacio(0)">Cancelar</button>
+      </p>
     </div>
   </div>
-  
+
+  <div class="col-md-9">
+    <table class="table table-dark table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th># Taller</th>
+          <th>Nombre</th>
+          <th>Detalle</th>
+          <th>Horas</th>
+          <th>Cupos</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let taller of talleres">
+          <td>{{taller.numtaller}}</td>
+          <td>{{taller.nombre}}</td>
+          <td>{{taller.detalle}}</td>
+          <td>{{taller.numhoras}}</td>
+          <td>{{taller.cupos}}</td>
+          <td>
+            <button class="btn btn-warning" (click)="getTaller(taller.numtaller)">Editar</button>&nbsp;
+            <button class="btn btn-danger" (click)="getTallerBorrar(taller.numtaller)">Borrar</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
