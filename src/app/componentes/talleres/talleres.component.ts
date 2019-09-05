@@ -30,7 +30,6 @@ export class TalleresComponent implements OnInit {
     tallerObservable.subscribe(
       tallerObtenido => {
         this.nuevoTaller = tallerObtenido;
-        window.location.reload();
       });
   }
   public getTaller(id: number) {
@@ -79,8 +78,14 @@ export class TalleresComponent implements OnInit {
     estado.subscribe(
       estado => {
         this.getTalleres();
+        this.getTallerVacio(0);
       });
 
+  }
+
+  public cancelar(){
+    this.getTallerVacio(0);
+    window.location.reload();
   }
 
 }
