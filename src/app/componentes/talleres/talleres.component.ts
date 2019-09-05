@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TallerInterface } from 'src/app/modelos/taller';
+import { ApiserviciosService } from 'src/app/servicios/apiservicios.service';
 
 @Component({
   selector: 'app-talleres',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TalleresComponent implements OnInit {
 
-  constructor() { }
+  public talleres: TallerInterface;
+  constructor(private apiServicios: ApiserviciosService) { }
 
   ngOnInit() {
+    this.getTalleres();
+  }
+
+  public getTalleres() {
+    this.apiServicios.getTalleres()
+    .subscribe((talleres: TallerInterface) => (this.talleres = talleres));
   }
 
 }

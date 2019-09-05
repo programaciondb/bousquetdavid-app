@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MatriculasComponent } from 'src/app/componentes/matriculas/matriculas.component';
+import { TalleresComponent } from 'src/app/componentes/talleres/talleres.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: "", redirectTo: "menu-app", pathMatch: "full"},
+  {path: "talleres/listar", component: TalleresComponent},
+  {path: "matriculas/listar", component: MatriculasComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

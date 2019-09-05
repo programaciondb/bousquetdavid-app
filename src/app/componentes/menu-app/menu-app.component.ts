@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TallerInterface } from 'src/app/modelos/taller';
+import { ApiserviciosService } from 'src/app/servicios/apiservicios.service';
+
 
 @Component({
   selector: 'app-menu-app',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuAppComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiServicios: ApiserviciosService) { }
 
   ngOnInit() {
   }
