@@ -27,10 +27,14 @@ export class ApiserviciosService {
       this.rutaRestTalleres, taller, this.httpOptions
     );
   }
-  
+
   public putTaller(id: number, taller: TallerInterface): Observable<TallerInterface> {
     return this.http.put<TallerInterface>(
       this.rutaRestTalleres + id, taller, this.httpOptions
     );
+  }
+
+  public deleteTaller(id: number): Observable<TallerInterface> {
+    return this.http.delete<TallerInterface>(this.rutaRestTalleres + id);
   }
 }

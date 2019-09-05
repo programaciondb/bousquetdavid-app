@@ -74,4 +74,13 @@ export class TalleresComponent implements OnInit {
     );
   }
 
+  public deleteTaller(id: number) {
+    var estado = this.apiServicios.deleteTaller(id);
+    estado.subscribe(
+      estado => {
+        this.getTalleres();
+      });
+
+  }
+
 }

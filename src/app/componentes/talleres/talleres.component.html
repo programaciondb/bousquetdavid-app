@@ -46,7 +46,7 @@
         <button *ngIf="mensaje=='Editar'" class="btn btn-warning mr-2"
           (click)="putTaller(nuevoTaller.numtaller)">Editar</button>
         <button *ngIf="mensaje=='Borrar'" class="btn btn-danger mr-2"
-          (click)="putTaller(nuevoTaller.numtaller)">Borrar</button>
+          (click)="deleteTaller(nuevoTaller.numtaller)">Borrar</button>
           <button *ngIf="mensaje!='Crear'" class="btn btn-success" (click)="getTallerVacio(0)">Cancelar</button>
       </p>
     </div>
