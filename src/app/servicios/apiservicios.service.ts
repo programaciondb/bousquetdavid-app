@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TallerInterface } from 'src/app/modelos/taller';
+import { MatriculaInterface } from '../modelos/matricula';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { TallerInterface } from 'src/app/modelos/taller';
 export class ApiserviciosService {
 
   private rutaRestTalleres = "http://localhost:8089/talleres/";
+  private rutaRestMatriculas = "http://localhost:8089/matriculas/taller/";
   httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 
   constructor(private http: HttpClient) { }
@@ -36,5 +38,9 @@ export class ApiserviciosService {
 
   public deleteTaller(id: number): Observable<TallerInterface> {
     return this.http.delete<TallerInterface>(this.rutaRestTalleres + id);
+  }
+
+  public getMatriculas(id: number): Observable<MatriculaInterface> {
+    return this.http.get<MatriculaInterface>(this.rutaRestMatriculas + id);
   }
 }
