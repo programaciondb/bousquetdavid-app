@@ -37,6 +37,7 @@ export class TalleresComponent implements OnInit {
       tallerObtenido => {
         this.nuevoTaller = tallerObtenido;
         this.getTalleres();
+        this.getTaller(0);
       });
   }
 
