@@ -1,24 +1,53 @@
 <div class="row">
     <div class="col-md-3">
-
+            <div *ngIf="nuevoTaller" class="text-white">
+                <h3>Crear Taller</h3>
+                    <p>
+                        <input type="hidden" [(ngModel)]="nuevoTaller.numtaller"> <br>
+                        <label>Nombre</label>
+                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.nombre">
+                    </p>
+                    <p>
+                        <label>Detalle</label>
+                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.detalle">
+                    </p>
+                    <p>
+                        <label>Horas</label>
+                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.numhoras">
+                    </p>
+                    <p>
+                        <label>Cupos</label>
+                        <input class="form-control" required="true" [(ngModel)]="nuevoTaller.cupos">
+                    </p>
+                    <p>
+                        <button class="btn btn-info mr-2" (click)="postTaller()">POST</button>
+                    </p>
+                </div>
     </div>
 
     <div class="col-md-9">
-      <table class="table table-dark table-bordered table-striped">
+      <table class="table table-dark table-bordered table-striped text-center">
         <thead>
           <tr>
+            <th># Taller</th>
             <th>Nombre</th>
             <th>Detalle</th>
             <th>Horas</th>
             <th>Cupos</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let taller of talleres">
+            <td>{{taller.numtaller}}</td>
             <td>{{taller.nombre}}</td>
             <td>{{taller.detalle}}</td>
             <td>{{taller.numhoras}}</td>
             <td>{{taller.cupos}}</td>
+            <td>
+                    <a class="btn btn-warning" routerLink="/talleres/editar/{{taller.numtaller}}">Editar</a>&nbsp;
+                    <a class="btn btn-danger" routerLink="/talleres/borrar/{{taller.numtaller}}">Borrar</a>
+            </td>
           </tr>
   
         </tbody>

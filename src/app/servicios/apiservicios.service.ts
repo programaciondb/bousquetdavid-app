@@ -16,4 +16,15 @@ export class ApiserviciosService {
   public getTalleres() {
     return this.http.get(this.rutaRestTalleres);
   }
+
+  public getTaller(id: number): Observable<TallerInterface> {
+    return this.http.get<TallerInterface>(this.rutaRestTalleres + id);
+  }
+
+  public postTaller(taller: TallerInterface):
+    Observable<TallerInterface> {
+    return this.http.post<TallerInterface>(
+      this.rutaRestTalleres, taller, this.httpOptions
+    );
+  }
 }

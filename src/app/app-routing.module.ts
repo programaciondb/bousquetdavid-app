@@ -6,8 +6,8 @@ import { TalleresComponent } from 'src/app/componentes/talleres/talleres.compone
 
 const routes: Routes = [
   {path: "", redirectTo: "menu-app", pathMatch: "full"},
-  {path: "talleres/listar", component: TalleresComponent},
-  {path: "matriculas/listar", component: MatriculasComponent},
+  {path: "talleres", component: TalleresComponent},
+  {path: "matriculas", component: MatriculasComponent},
 ];
 
 @NgModule({
