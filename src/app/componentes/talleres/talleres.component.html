@@ -20,8 +20,10 @@
                         <input class="form-control" required="true" [(ngModel)]="nuevoTaller.cupos">
                     </p>
                     <p>
-                        <button class="btn btn-info mr-2" (click)="postTaller()">POST</button>
-                    </p>
+                            <button *ngIf="mensaje=='Crear'" class="btn btn-info mr-2" (click)="postTaller()">POST</button>
+                            <button *ngIf="mensaje!='Crear'" class="btn btn-warning mr-2" (click)="putTaller(nuevoTaller.numtaller)">Editar</button>
+                            <button *ngIf="mensaje!='Crear'" class="btn btn-danger mr-2" (click)="putTaller(nuevoTaller.numtaller)">Borrar</button>
+                        </p>
                 </div>
     </div>
 
@@ -45,8 +47,8 @@
             <td>{{taller.numhoras}}</td>
             <td>{{taller.cupos}}</td>
             <td>
-                    <a class="btn btn-warning" routerLink="/talleres/editar/{{taller.numtaller}}">Editar</a>&nbsp;
-                    <a class="btn btn-danger" routerLink="/talleres/borrar/{{taller.numtaller}}">Borrar</a>
+                    <button class="btn btn-warning" (click)="getTaller(taller.numtaller)">Editar</button>&nbsp;
+                    <a class="btn btn-danger" routerLink="/talleres">Borrar</a>
             </td>
           </tr>
   
