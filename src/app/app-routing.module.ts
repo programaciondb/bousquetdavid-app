@@ -5,7 +5,7 @@ import { TalleresComponent } from 'src/app/componentes/talleres/talleres.compone
 
 
 const routes: Routes = [
-  {path: "", redirectTo: "menu-app", pathMatch: "full"},
+  {path: "", redirectTo: "talleres", pathMatch: "full"},
   {path: "talleres", component: TalleresComponent},
   {path: "matriculas", component: MatriculasComponent},
 ];
