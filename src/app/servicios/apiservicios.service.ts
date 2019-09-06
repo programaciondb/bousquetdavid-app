@@ -44,8 +44,18 @@ export class ApiserviciosService {
   public getMatriculas(id: number): Observable<MatriculaInterface> {
     return this.http.get<MatriculaInterface>(this.rutaRestMatriculasGet + id);
   }
+  public getMatricula(id: number): Observable<MatriculaInterface> {
+    return this.http.get<MatriculaInterface>(this.rutaRestMatriculas + id);
+  }
 
   public deleteMatricula(id: number): Observable<MatriculaInterface> {
     return this.http.delete<MatriculaInterface>(this.rutaRestMatriculas + id);
+  }
+
+  public postMatricula(matricula: MatriculaInterface):
+    Observable<MatriculaInterface> {
+    return this.http.post<MatriculaInterface>(
+      this.rutaRestMatriculas, matricula, this.httpOptions
+    );
   }
 }

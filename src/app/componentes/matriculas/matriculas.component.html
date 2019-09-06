@@ -1,7 +1,8 @@
-<div class="text-center">
+<div>
   <h4 class="text-white text-center">Seleccione Taller</h4>
   <div *ngIf="talleres">
-    <select (change)="getMatriculas(tallerSeleccionado)" class="form-control" name="selectTalleres" [(ngModel)]="tallerSeleccionado">
+    <select (change)="getMatriculas(tallerSeleccionado)" #selectTalleres class="form-control" name="selectTalleres"
+      [(ngModel)]="tallerSeleccionado">
       <option [value]="talleropt.numtaller" *ngFor="let talleropt of talleres">{{talleropt.nombre}}</option>
     </select>
   </div>
@@ -35,14 +36,45 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn btn-success btn-block my-2">Matricular Alumno</button>
+      <button (click)="habilitarMatriculaNueva(tallerSeleccionado)" class="btn btn-success btn-block my-2">Matricular Alumno</button>
     </div>
     <ng-template #noMatriculados>
       <div *ngIf="tallerSeleccionado.value!=0">
         <h4 class="text-white">Taller no tiene alumnos matriculados</h4>
-            <button class="btn btn-success btn-block my-2">Matricular Alumno</button>
+        <button (click)="habilitarMatriculaNueva(tallerSeleccionado)" class="btn btn-success btn-block my-2">Matricular Alumno</button>
       </div>
     </ng-template>
+
+    <div *ngIf="matricularNuevo" class="text-white container">
+      <p>
+        <label>Rut</label>
+        <input class="form-control" required="true" [(ngModel)]="nuevaMatricula.rut">
+      </p>
+      <p>
+        <label>DV</label>
+        <input class="form-control" required="true" [(ngModel)]="nuevaMatricula.dv">
+      </p>
+      <p>
+        <label>Paterno</label>
+        <input class="form-control" required="true" [(ngModel)]="nuevaMatricula.paterno">
+      </p>
+      <p>
+        <label>Materno</label>
+        <input class="form-control" required="true" [(ngModel)]="nuevaMatricula.materno">
+      </p>
+      <p>
+        <label>Nombre</label>
+        <input class="form-control" required="true" [(ngModel)]="nuevaMatricula.nombre">
+      </p>
+      <p>
+        <label>Email</label>
+        <input type="email" class="form-control" required="true" [(ngModel)]="nuevaMatricula.email">
+      </p>
+
+      <p> <input class="form-control" type="hidden" required="true" [(ngModel)]="nuevaMatricula.numtaller">
+          <button class="btn btn-info mr-2" (click)="postMatricula()">Enviar Matricula</button>
+      </p>
+    </div>
 
   </div>
 </div>
