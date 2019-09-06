@@ -30,4 +30,15 @@ export class MatriculasComponent implements OnInit {
       });
   }
 
+  public deleteMatricula(id: number) {
+    var confirmarDelete = confirm("¿Está seguro que desea eliminar al alumno del taller?");
+    if (confirmarDelete) {
+      var estado = this.apiServicios.deleteMatricula(id);
+      estado.subscribe(
+        estado => {
+          window.location.reload();
+        });
+    }
+  }
+
 }

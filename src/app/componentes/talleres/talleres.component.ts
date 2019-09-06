@@ -74,13 +74,15 @@ export class TalleresComponent implements OnInit {
   }
 
   public deleteTaller(id: number) {
+    var confirmarDelete = confirm("¿Está seguro que desea eliminar el taller?");
+    if (confirmarDelete) {
     var estado = this.apiServicios.deleteTaller(id);
     estado.subscribe(
       estado => {
         this.getTalleres();
         this.getTallerVacio(0);
       });
-
+    }
   }
 
   public cancelar(){

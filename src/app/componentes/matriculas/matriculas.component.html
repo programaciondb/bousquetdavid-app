@@ -30,7 +30,7 @@
             <td>{{matricula.nombre}}</td>
             <td>{{matricula.email}}</td>
             <td>
-              <button class="btn btn-danger"><strong>X</strong></button>
+              <button (click)="deleteMatricula(matricula.nummat)" class="btn btn-danger"><strong>X</strong></button>
             </td>
           </tr>
         </tbody>

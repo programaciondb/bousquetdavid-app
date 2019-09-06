@@ -10,7 +10,8 @@ import { MatriculaInterface } from '../modelos/matricula';
 export class ApiserviciosService {
 
   private rutaRestTalleres = "http://localhost:8089/talleres/";
-  private rutaRestMatriculas = "http://localhost:8089/matriculas/taller/";
+  private rutaRestMatriculasGet = "http://localhost:8089/matriculas/taller/";
+  private rutaRestMatriculas = "http://localhost:8089/matriculas/";
   httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json" }) };
 
   constructor(private http: HttpClient) { }
@@ -41,6 +42,10 @@ export class ApiserviciosService {
   }
 
   public getMatriculas(id: number): Observable<MatriculaInterface> {
-    return this.http.get<MatriculaInterface>(this.rutaRestMatriculas + id);
+    return this.http.get<MatriculaInterface>(this.rutaRestMatriculasGet + id);
+  }
+
+  public deleteMatricula(id: number): Observable<MatriculaInterface> {
+    return this.http.delete<MatriculaInterface>(this.rutaRestMatriculas + id);
   }
 }
